@@ -1,9 +1,9 @@
 
 
 {
-  "name": "Chirpy",
-  "short_name": "Chirpy",
-  "description": "A minimal, responsive and feature-rich Jekyll theme for technical writing.",
+  "name": "Mr-Sudheer",
+  "short_name": "Mr-Sudheer",
+  "description": "CTF writeups, penetration testing notes, and cybersecurity research.",
   "icons": [
     {
       "src": "/assets/img/favicons/web-app-manifest-192x192.png",
