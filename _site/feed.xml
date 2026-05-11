@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Mr-Sudheer</title>
   <subtitle>CTF writeups, penetration testing notes, and cybersecurity research.</subtitle>
-  <updated>2026-05-10T19:23:16+05:30</updated>
+  <updated>2026-05-11T12:36:57+05:30</updated>
   <author>
     <name>Sudheer</name>
     <uri>http://localhost:4000/</uri>
@@ -17,6 +17,30 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>TryHackMe - Corridor Walkthrough</title>
+    <link href="http://localhost:4000/posts/corridor/" rel="alternate" type="text/html" title="TryHackMe - Corridor Walkthrough" />
+    <published>2026-05-11T00:00:00+05:30</published>
+  
+    <updated>2026-05-11T00:00:00+05:30</updated>
+  
+    <id>http://localhost:4000/posts/corridor/</id>
+    <content type="text/html" src="http://localhost:4000/posts/corridor/" />
+    <author>
+      <name>Sudheer</name>
+    </author>
+
+  
+    
+    <category term="TryHackMe" />
+    
+  
+
+  <summary>You have found yourself in a strange corridor. Can you find your way back to where you came?  In this challenge, you will explore potential IDOR vulnerabilities. Examine the URL endpoints you access as you navigate the website and note the hexadecimal values you find (they look an awful lot like a hash, don’t they?). This could help you uncover website locations you were not expected to access....</summary>
+
+  </entry>
 
 </feed>
 
