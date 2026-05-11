@@ -1,0 +1,67 @@
+<p><img src="../../assets/img/Corridor/Corridor-logo.png" alt="Logo" /></p>
+
+<p>You have found yourself in a strange corridor. Can you find your way back to where you came?</p>
+
+<p>In this challenge, you will explore potential IDOR vulnerabilities. Examine the URL endpoints you access as you navigate the website and note the hexadecimal values you find (they look an awful lot like a hash, don’t they?). This could help you uncover website locations you were not expected to access.</p>
+
+<p><a href="https://tryhackme.com/room/corridor">TryHackMe corridor room</a></p>
+
+<h1 id="reconnaissance">Reconnaissance</h1>
+
+<p>Always start with scanning and playing around the web page to find all the entry points and get as information as possible.</p>
+
+<h2 id="nmap-scan">Nmap Scan</h2>
+
+<p><img src="../../assets/img/Corridor/Corridor-nmap.png" alt="Nmap scan" /></p>
+
+<p>Open port: 80 (<code class="language-plaintext highlighter-rouge">HTTP</code>)</p>
+
+<p>Nmap scan revealed that port 80 is open, indicating “http” service is running.</p>
+
+<h1 id="enumeration">Enumeration</h1>
+
+<p>After loading “<code class="language-plaintext highlighter-rouge">http://IP_address/</code>” in the browser, we land on Home page.</p>
+
+<p><img src="../../assets/img/Corridor/Corridor-home-page.png" alt="Home page" /></p>
+
+<p>There are 13 doors in the Corridor and each leads to different pages. Click any of the doors and observe the hash in the URL. All the URLs are given below.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://10.48.177.244/c4ca4238a0b923820dcc509a6f75849b
+http://10.48.177.244/c81e728d9d4c2f636f067f89cc14862c
+http://10.48.177.244/eccbc87e4b5ce2fe28308fd9f2a7baf3
+http://10.48.177.244/a87ff679a2f3e71d9181a67b7542122c
+http://10.48.177.244/e4da3b7fbbce2345d7772b0674a318d5
+http://10.48.177.244/1679091c5a880faf6fb5e6087eb1b2dc
+http://10.48.177.244/8f14e45fceea167a5a36dedd4bea2543
+http://10.48.177.244/c51ce410c124a10e0db5e4b97fc2af39
+http://10.48.177.244/c20ad4d76fe97759aa27a0c99bff6710
+http://10.48.177.244/6512bd43d9caa6e02c990b0a82652dca
+http://10.48.177.244/d3d9446802a44259755d38e6d163e820
+http://10.48.177.244/45c48cce2e2d7fbdea1afc51c7c6ad26
+
+</code></pre></div></div>
+
+<p>Each string contains 32 hexadecimal characters, which strongly resembles md5 hash. I used this <a href="https://10015.io/tools/md5-encrypt-decrypt">tool</a> to find original values of the hashes.</p>
+
+<p>After computing the hashes, I found that each hash represents a number. Numbers from 1 through 13. Now I know that adding the hash value of a number to the URL gives me a hint to find the flag. Then I considered trying the values outside of these numbers range. Hashes of next consecutive numbers 14, 15 and 16 returned invalid pages but trying out the hash of ‘0’ returned the flag.</p>
+
+<p><img src="../../assets/img/Corridor/Corridor-flag.png" alt="Flag" /></p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>This room demonstrated how predictable object identifiers and insufficient authorization checks can lead to IDOR vulnerabilities. It also tells us the importance of knowledge on common hash formats such as MD5, SHA, etc I fied is crucial.</p>
+
+<h1 id="lessons-learned">Lessons Learned</h1>
+
+<ol>
+  <li>
+    <p>Learned how <strong>IDOR (Insecure Direct Object Reference)</strong> vulnerabilities can expose unauthorized resources through predictable object identifiers.</p>
+  </li>
+  <li>
+    <p>Learned how <strong>MD5 hashing</strong> works and how weak hashes can be identified or cracked using online databases and wordlists.</p>
+  </li>
+  <li>
+    <p>Learned the importance of validating user authorization on the server side instead of relying solely on <strong>client-controlled identifiers.</strong></p>
+  </li>
+</ol>
+
