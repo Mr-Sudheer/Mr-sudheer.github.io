@@ -1,17 +1,17 @@
 
 
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <id>/</id>
+  <id>http://localhost:4000/</id>
   <title>Mr-Sudheer</title>
   <subtitle>CTF writeups, penetration testing notes, and cybersecurity research.</subtitle>
-  <updated>2026-05-10T19:01:56+05:30</updated>
+  <updated>2026-05-10T19:23:16+05:30</updated>
   <author>
     <name>Sudheer</name>
-    <uri>/</uri>
+    <uri>http://localhost:4000/</uri>
   </author>
-  <link rel="self" type="application/atom+xml" href="/feed.xml"/>
+  <link rel="self" type="application/atom+xml" href="http://localhost:4000/feed.xml"/>
   <link rel="alternate" type="text/html" hreflang="en"
-    href="/"/>
+    href="http://localhost:4000/"/>
   <generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator>
   <rights> © 2026 Sudheer </rights>
   <icon>/assets/img/favicons/favicon.ico</icon>
