@@ -41,6 +41,7 @@ social:
     # The first element serves as the copyright owner's link
     # - https://twitter.com/username # change to your Twitter homepage
     - https://github.com/Mr-Sudheer # change to your GitHub homepage
+    - https://tryhackme.com/p/Kghackr # change to your TryHackMe profile
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username
@@ -89,7 +90,7 @@ pageviews:
 #     light — Use the light color scheme
 #     dark — Use the dark color scheme
 #
-theme_mode: # [light | dark]
+theme_mode: dark
 
 # The CDN endpoint for media resources.
 # Notice that once it is assigned, the CDN url
@@ -166,6 +167,7 @@ kramdown:
     block:
       line_numbers: true
       start_line: 1
+
 
 collections:
   tabs:
