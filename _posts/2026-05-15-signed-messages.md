@@ -15,7 +15,7 @@ image:
 
 Usually, the first step in any challenge is to gather information and understand the context. As given in the instruction, we can find web application at `http://MACHINE_IP:5000`. After loading the application, we land on Homepage. Just look around the page opening all the tabs and sub-directories to find all the information we can get. Focus on Messages, Verify, Login and Register pages.
 
-![Home page](/assets/img/signed_messages/Home_page.png)
+![Home page](/assets/img/signed_messages/Home_Page.png)
 
 ### Scan
 
