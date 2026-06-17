@@ -10,6 +10,8 @@ image:
 
 ![Instruction](/assets/img/signed_messages/Inst.png)
 
+Access TryHackMe lab here: [Signed messages](https://tryhackme.com/room/lafb2026e8)
+
 
 ## Reconnaissance and Enumeration
 

