@@ -1,0 +1,25 @@
+---
+layout: null
+permalink: /login/
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JavaScript Test</title>
+</head>
+<body>
+  <div style="padding: 40px; text-align: center;">
+    <h1>Redirect PoC</h1>
+    <p>Redirect reached my controlled domain.</p>
+    <p id="status"></p>
+  </div>
+
+  <script>
+    document.getElementById("status").textContent =
+      "JavaScript executed successfully on mr-sudheer.github.io";
+  </script>
+  <script>alert(1)</script>
+</body>
+</html>
